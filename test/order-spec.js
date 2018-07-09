@@ -46,7 +46,7 @@ describe("Ordering Items", function () {
 
       this.callback = sinon.spy();
 
-      order.ordetItem("CCC", 2, this.callback)
+      order.orderItem("CCC", 2, this.callback)
 
     });
 
