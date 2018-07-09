@@ -52,7 +52,7 @@ describe("Ordering Items", function () {
 
     it("receives a tracking number", function() {
 
-      expect(this.callback.calledWith(10987654321).to.equal(true));
+      expect(this.callback.calledWith(10987654321)).to.equal(true);
 
     });
 
