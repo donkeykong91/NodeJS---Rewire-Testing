@@ -17,8 +17,13 @@ describe("Ordering Items", function () {
       log: sinon.spy()
     };
 
+    this.warehoue = {
+      packageAndShip: sinon.stub().yields(10987654321)
+    };
+
     order.__set__("inventoryData", this.testData);
     order.__set__("console", this.console);
+    order.__set__("warehouse", this.warehouse);
   });
 
   it('order an item when there are enough in stock', function(done) {
@@ -30,6 +35,30 @@ describe("Ordering Items", function () {
       expect(_this.console.log.callCount).to.equal(2);
 
       done();
+
+    });
+
+  });
+
+  describe("Warehouse interaction", function() {
+
+    beforeEach(function () {
+
+      this.callback = sinon.spy();
+
+      order.ordetItem("CCC", 2, this.callback)
+
+    });
+
+    it("receives a tracking number", function() {
+
+      expect(this.callback.calledWith(10987654321).to.equal(true));
+
+    });
+
+    it('calls packageAndShip with the correct sku and quantity', function() {
+
+      expect(this.warehouse.packageAndShip.calledWith("CCC", 2)).to.equal(true);
 
     });
 
