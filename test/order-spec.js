@@ -17,7 +17,7 @@ describe("Ordering Items", function () {
       log: sinon.spy()
     };
 
-    this.warehoue = {
+    this.warehouse = {
       packageAndShip: sinon.stub().yields(10987654321)
     };
 
